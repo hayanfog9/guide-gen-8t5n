@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 작업방 안내 파일 만들기 - JW의 AI 작업실</title>
+<meta name="description" content="AI에게 새 대화마다 같은 설명을 하지 않도록, 목적·폴더·규칙·하지 말 것·진행 중인 일을 채우면 안내 파일(.md) 초안을 만들어 주는 무료 도구예요. 입력한 내용은 저장하거나 전송하지 않아요.">
+<link rel="canonical" href="https://hayanfog9.github.io/guide-gen-8t5n/">
+<meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="AI 작업방 안내 파일 만들기"><meta property="og:description" content="목적, 폴더, 규칙을 채우면 AI에게 읽힐 안내 파일(.md) 초안이 만들어져요."><meta property="og:url" content="https://hayanfog9.github.io/guide-gen-8t5n/"><meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1220;--bg2:#111c33;--card:#15213d;--line:#27385f;--text:#eef3ff;--sub:#aab7d4;--acc:#22d3ee;--gold:#ffd98a;--red:#ff8a8a}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#0f1830 60%,var(--bg2));color:var(--text);font:16px/1.65 "Noto Sans KR","Malgun Gothic",sans-serif;min-height:100vh}
+a{color:var(--acc)}.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{padding:40px 0 18px}
+h1{font:700 clamp(28px,5vw,42px)/1.25 "Gowun Batang",serif;margin:0 0 8px}h1 span{color:var(--acc)}
+.lead{color:var(--sub);margin:0;max-width:680px}
+.privacy{display:inline-block;margin-top:12px;font-size:13.5px;color:var(--gold);border:1px solid rgba(255,217,138,.5);border-radius:999px;padding:3px 12px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start;margin:24px 0 40px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+h2{font:700 20px "Gowun Batang",serif;margin:0 0 4px}.hint{color:var(--sub);font-size:13.5px;margin:0 0 10px}
+label.f{display:block;margin:14px 0 4px;font-weight:700;font-size:15px}
+input[type=text],textarea{width:100%;background:#0c1730;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit;font-size:15px}
+textarea{min-height:76px;resize:vertical}input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:0}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:14.5px;cursor:pointer}.chk input{margin-top:5px;accent-color:var(--acc)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+button{font:inherit;font-weight:700;font-size:14.5px;border-radius:999px;padding:9px 16px;border:1px solid var(--acc);background:transparent;color:var(--acc);cursor:pointer}
+button.fill{background:var(--acc);color:#07202a}button:hover{filter:brightness(1.15)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;background:#0a1124;border:1px solid var(--line);border-radius:12px;padding:14px;font:14px/1.7 "Noto Sans KR","Malgun Gothic",monospace;max-height:560px;overflow:auto}
+.warn{display:none;margin:0 0 10px;background:rgba(255,138,138,.12);border:1px solid var(--red);color:var(--red);border-radius:10px;padding:9px 12px;font-size:14px}
+.first{margin-top:14px;background:#0c1730;border:1px dashed var(--acc);border-radius:12px;padding:10px 12px;font-size:14.5px}.first code{color:var(--gold)}
+.about{margin:0 0 40px;color:var(--sub);font-size:14.5px}.about b{color:var(--text)}.about ul{margin:8px 0 0;padding-left:20px}
+footer{margin:0 0 40px;padding-top:18px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;text-align:center}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--acc);color:#07202a;font-weight:700;border-radius:999px;padding:8px 18px;opacity:0;transition:opacity .2s;pointer-events:none}
+</style></head><body><div class="wrap">
+<header><h1>AI 작업방 <span>안내 파일</span> 만들기</h1>
+<p class="lead">새 대화를 열 때마다 같은 설명을 반복하지 않도록, AI에게 읽힐 안내 파일(.md) 초안을 만들어 드려요. 칸을 채우면 오른쪽에 바로 나와요.</p>
+<span class="privacy">입력한 내용은 이 브라우저에서만 처리하고 저장하거나 전송하지 않아요</span></header>
+<main class="cols">
+<section class="panel" aria-label="입력">
+<h2>1. 내용 채우기</h2><p class="hint">비워 둔 칸은 파일에서 빠져요. 한 줄에 하나씩 쓰면 목록이 돼요.</p>
+<div class="btns" style="margin:0 0 4px"><button type="button" id="ex">예시로 채우기</button><button type="button" id="clr">처음으로</button></div>
+<label class="f" for="room">방 이름</label><input type="text" id="room" placeholder="예: 방 A" autocomplete="off">
+<label class="f" for="purpose">이 방은 무엇인가 (한두 문장)</label><textarea id="purpose" placeholder="예: 블로그 글과 쇼츠 영상을 AI와 함께 만드는 방. AI가 초안을 만들고 내가 확인해서 올린다."></textarea>
+<label class="f" for="tasks">하는 일 (한 줄에 하나)</label><textarea id="tasks" placeholder="블로그 글 초안&#10;이미지 만들기&#10;쇼츠 대본"></textarea>
+<label class="f" for="root">작업 폴더 위치</label><input type="text" id="root" placeholder="예: C:\Users\내이름\Documents\방A" autocomplete="off">
+<label class="f" for="dirs">폴더 구조 (한 줄에 하나, 이름 - 용도)</label><textarea id="dirs" placeholder="01_글 - 블로그 글과 이미지&#10;02_영상 - 쇼츠 파일"></textarea>
+<label class="f">일하는 방식 (내가 정한 규칙)</label><div id="rules"></div>
+<textarea id="rulesX" placeholder="더 적고 싶은 규칙 (한 줄에 하나)"></textarea>
+<label class="f">하지 말 것</label><div id="donts"></div>
+<textarea id="dontsX" placeholder="더 적고 싶은 금지 사항 (한 줄에 하나)"></textarea>
+<label class="f" for="now">지금 진행 중인 일 (한 줄에 하나)</label><textarea id="now" placeholder="글 3개 중 2개 완료&#10;다음: 영상 대본"></textarea>
+<label class="f" for="stuck">막혔을 때 확인할 곳 (한 줄에 하나)</label><textarea id="stuck" placeholder="자주 쓰는 사이트 주소, 설정 위치 등"></textarea>
+<label class="f" for="fname">파일 이름</label><input type="text" id="fname" value="작업_안내.md" autocomplete="off">
+</section>
+<section class="panel" aria-label="결과">
+<h2>2. 만들어진 안내 파일</h2><p class="hint">읽어 보고 틀린 부분은 고친 뒤 쓰세요.</p>
+<div class="warn" id="warn" role="alert"></div>
+<pre id="out" aria-live="polite"></pre>
+<div class="btns"><button type="button" class="fill" id="copy">복사</button><button type="button" id="dl">.md 파일로 저장</button></div>
+<div class="first"><b>새 대화 첫마디</b><br><code id="fm"></code><br><code>읽은 내용을 세 줄로 요약해 줘</code><div class="hint" style="margin:6px 0 0">요약이 맞으면 일을 시키고, 틀리면 그 줄만 고치세요.</div></div>
+</section></main>
+<div class="about"><b>이 도구에 대해</b>
+<ul><li>안내 파일은 AI에게 "이 방은 이런 곳이고 이렇게 일해 줘"를 미리 적어 둔 문서예요. 새 대화에서 "<i>파일이름</i> 읽고 이어서 작업하자"라고 말하면 읽혀요.</li>
+<li>클로드 코드는 공식 문서 기준으로 CLAUDE.md라는 이름의 지침 파일을 세션을 시작할 때마다 읽어요. 그 밖의 AI에서는 파일 내용을 대화창에 붙여 넣으면 돼요.</li>
+<li>비밀번호, API 키, 인증 번호, 개인정보는 안내 파일에 넣지 마세요. 입력한 내용에서 그런 것처럼 보이는 부분을 찾으면 위에 알려 드려요(완벽하지 않아요).</li>
+<li>AI가 규칙을 항상 지킨다는 보장은 없어요. 되돌리기 어려운 일은 직접 하세요.</li>
+<li>자세한 사용법: <a href="https://blog.naver.com/hayanfog/224455183843" target="_blank" rel="noopener">스킬 없이 안내 파일로 AI 작업방 여러 개 굴리는 법</a></li></ul></div>
+<footer>© JW의 AI 작업실 · <a href="https://hayanfog9.github.io/">다른 도구 보기</a> · 이 페이지는 AI(Claude)의 도움으로 만들었어요</footer>
+</div><div id="toast" role="status"></div>
+<script>
+(function(){
+var RULES=["짧고 쉬운 한국어로 답한다","추측하지 말고 확인한 것만 보고한다. 못 확인한 건 못 했다고 말한다","확인한 것과 일반 지식으로 쓴 것을 나눠서 보고한다","결과물은 날짜 폴더에 저장한다","새로 만드는 폴더는 앞에 01_, 02_ 번호를 붙인다"];
+var RULES_ON=[0,1];
+var DONTS=["비밀번호, API 키, 인증 번호를 파일이나 대화에 쓰지 않는다","개인정보와 다른 사람의 정보를 입력하거나 공유하지 않는다","삭제, 게시, 업로드처럼 되돌리기 어려운 일은 내가 직접 하거나 확인받고 한다","다른 작업 폴더의 파일을 이 폴더에 넣지 않는다"];
+var DONTS_ON=[0,1,2];
+var $=function(i){return document.getElementById(i)};
+function boxes(id,list,on,name){var h="";list.forEach(function(t,i){h+='<label class="chk"><input type="checkbox" name="'+name+'" value="'+i+'"'+(on.indexOf(i)>-1?" checked":"")+'><span>'+t+'</span></label>'});$(id).innerHTML=h}
+boxes("rules",RULES,RULES_ON,"r");boxes("donts",DONTS,DONTS_ON,"d");
+function lines(v){return v.split(/\r?\n/).map(function(s){return s.replace(/^[-•*]\s*/,"").trim()}).filter(Boolean)}
+function picked(name,list){var r=[];document.querySelectorAll('input[name="'+name+'"]:checked').forEach(function(c){r.push(list[+c.value])});return r}
+function sec(title,arr){return arr.length?"\n## "+title+"\n"+arr.map(function(x){return "- "+x}).join("\n")+"\n":""}
+var CHECKS=[[/sk-[A-Za-z0-9_-]{10,}/,"API 키"],[/(api[_ -]?key|secret|token|passwd|password)\s*[:=]\s*\S+/i,"키나 비밀번호"],[/비밀번호\s*[:=]\s*\S+/,"비밀번호"],[/\b\d{6}-?[1-4]\d{6}\b/,"주민등록번호"],[/[\w.+-]+@[\w-]+\.[\w.-]+/,"이메일 주소"],[/\b01[016789]-?\d{3,4}-?\d{4}\b/,"전화번호"],[/\b\d{2,6}-\d{2,8}-\d{2,8}(-\d{1,4})?\b/,"계좌번호"]];
+function build(){
+ var room=$("room").value.trim()||"작업방",purpose=$("purpose").value.trim(),tasks=lines($("tasks").value),root=$("root").value.trim(),dirs=lines($("dirs").value);
+ var rules=picked("r",RULES).concat(lines($("rulesX").value)),donts=picked("d",DONTS).concat(lines($("dontsX").value)),now=lines($("now").value),stuck=lines($("stuck").value);
+ var d=new Date(),ds=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
+ var o="# "+room+" 안내 (이 방이 하는 일)\n\n새 대화에서 이 파일을 읽고 이어서 작업하세요.\n";
+ if(purpose||tasks.length){o+="\n## 이 방은 무엇인가\n";if(purpose)o+=purpose+"\n";if(tasks.length)o+=tasks.map(function(x){return "- "+x}).join("\n")+"\n"}
+ if(root||dirs.length){o+="\n## 폴더\n";if(root)o+="- 작업 폴더: "+root+"\n";dirs.forEach(function(x){o+="- "+x+"\n"})}
+ o+=sec("일하는 방식 (내가 정한 규칙)",rules)+sec("하지 말 것",donts)+sec("지금 진행 중인 일",now)+sec("막혔을 때 확인할 곳",stuck);
+ o+="\n(마지막으로 고친 날: "+ds+" · 작업이 바뀌면 \"지금 진행 중인 일\"을 고쳐 주세요.)\n";
+ $("out").textContent=o;$("fm").textContent=($("fname").value.trim()||"작업_안내.md")+" 읽고 이어서 작업하자";
+ var src=["room","purpose","tasks","root","dirs","rulesX","dontsX","now","stuck"].map(function(i){return $(i).value}).join("\n").replace(/\b\d{4}-\d{2}-\d{2}\b/g,"");var found=[];CHECKS.forEach(function(c){if(c[0].test(src)&&found.indexOf(c[1])<0)found.push(c[1])});
+ var w=$("warn");if(found.length){w.style.display="block";w.textContent="입력한 내용에 "+found.join(", ")+"처럼 보이는 부분이 있어요. 안내 파일에는 넣지 말고 지워 주세요."}else w.style.display="none";
+ return o}
+function toast(t){var e=$("toast");e.textContent=t;e.style.opacity=1;setTimeout(function(){e.style.opacity=0},1600)}
+$("copy").onclick=function(){var t=$("out").textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast("복사했어요")},fb)}else fb();function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("복사했어요")}catch(e){toast("복사하지 못했어요. 직접 선택해서 복사하세요")}document.body.removeChild(a)}};
+$("dl").onclick=function(){var n=($("fname").value.trim()||"작업_안내.md").replace(/[\\\/:*?"<>|]/g,"_");if(!/\.md$/i.test(n))n+=".md";var b=new Blob([$("out").textContent],{type:"text/markdown;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href)},500);toast("파일로 저장했어요")};
+$("ex").onclick=function(){$("room").value="방 A";$("purpose").value="블로그 글과 쇼츠 영상을 AI와 함께 만드는 방. AI가 초안을 만들고 내가 확인해서 올린다.";$("tasks").value="블로그 글 초안과 이미지\n쇼츠 대본과 영상";$("root").value="C:\\Users\\내이름\\Documents\\방A";$("dirs").value="01_글 - 블로그 글과 이미지\n02_영상 - 쇼츠 파일과 업로드 문구";$("rulesX").value="";$("dontsX").value="";$("now").value="글 1편 초안 완료\n다음: 쇼츠 대본";$("stuck").value="";RULES_ON=[0,1,3];boxes("rules",RULES,RULES_ON,"r");boxes("donts",DONTS,DONTS_ON,"d");build()};
+$("clr").onclick=function(){["room","purpose","tasks","root","dirs","rulesX","dontsX","now","stuck"].forEach(function(i){$(i).value=""});$("fname").value="작업_안내.md";RULES_ON=[0,1];boxes("rules",RULES,RULES_ON,"r");boxes("donts",DONTS,DONTS_ON,"d");build()};
+document.addEventListener("input",build);document.addEventListener("change",build);build();
+})();
+</script></body></html>
