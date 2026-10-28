@@ -35,7 +35,7 @@ footer{margin:0 0 40px;padding-top:18px;border-top:1px solid var(--line);color:v
 </style></head><body><div class="wrap">
 <header><h1>AI 작업방 <span>안내 파일</span> 만들기</h1>
 <p class="lead">새 대화를 열 때마다 같은 설명을 반복하지 않도록, AI에게 읽힐 안내 파일(.md) 초안을 만들어 드려요. 칸을 채우면 오른쪽에 바로 나와요.</p>
-<span class="privacy">입력한 내용은 이 브라우저에서만 처리하고 저장하거나 전송하지 않아요</span></header>
+<span class="privacy">입력한 내용은 이 브라우저에서만 처리하고 저장하거나 전송하지 않으며, 방문 횟수 통계(페이지 주소·제목, 이전 페이지, 같은 방문자 구분(최대 8시간), 브라우저·운영체제 종류, 화면 너비)만 수집해요</span></header>
 <main class="cols">
 <section class="panel" aria-label="입력">
 <h2>1. 내용 채우기</h2><p class="hint">비워 둔 칸은 파일에서 빠져요. 한 줄에 하나씩 쓰면 목록이 돼요.</p>
@@ -101,4 +101,5 @@ $("ex").onclick=function(){$("room").value="방 A";$("purpose").value="블로그
 $("clr").onclick=function(){["room","purpose","tasks","root","dirs","rulesX","dontsX","now","stuck"].forEach(function(i){$(i).value=""});$("fname").value="작업_안내.md";RULES_ON=[0,1];boxes("rules",RULES,RULES_ON,"r");boxes("donts",DONTS,DONTS_ON,"d");build()};
 document.addEventListener("input",build);document.addEventListener("change",build);build();
 })();
-</script></body></html>
+</script><script data-goatcounter="https://hayanfog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
